@@ -1,0 +1,176 @@
+﻿<UserControl
+    x:Class="EditJsonFInspection.Views.AddNewItem"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:prism="http://prismlibrary.com/"
+    d:DesignHeight="250"
+    d:DesignWidth="1200"
+    prism:ViewModelLocator.AutoWireViewModel="True"
+    Background="WhiteSmoke"
+    FontFamily="{DynamicResource MaterialDesignFont}"
+    mc:Ignorable="d">
+
+    <!--
+
+    xmlns:System="clr-namespace:System;assembly=mscorlib"
+
+    <UserControl.Resources>
+        <ObjectDataProvider
+            x:Key="MessageBoxResultEnum"
+            MethodName="GetValues"
+            ObjectType="{x:Type System:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="MessageBoxResult" />
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </UserControl.Resources>-->
+
+
+
+    <Grid>
+
+        <WrapPanel Margin="25" Orientation="Horizontal">
+
+            <DataGrid
+                BorderThickness="1"
+                CanUserAddRows="True"
+                CanUserDeleteRows="True"
+                IsReadOnly="False"
+                ItemsSource="{Binding InfoTextItem.ProdHierarchies}">
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn Header="Delete">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button
+                                    Width="30"
+                                    Height="30"
+                                    Background="Red"
+                                    BorderBrush="Red"
+                                    Command="{Binding DataContext.DeleteProdHierElement, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
+                                    CommandParameter="{Binding}"
+                                    Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryDarkButton}"
+                                    ToolTip="MaterialDesignFloatingActionMiniSecondaryDarkButton">
+                                    <materialDesign:PackIcon Kind="Delete" />
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+
+
+            <TextBox
+                Height="40"
+                MinWidth="140"
+                Margin="10"
+                Padding="10,0,10,5"
+                materialDesign:HintAssist.Hint="Info Message Text"
+                Style="{StaticResource MaterialDesignFilledTextBox}"
+                Text="{Binding InfoTextItem.InfoMessage.Text}" />
+
+            <ComboBox
+                Width="200"
+                Height="40"
+                MinWidth="140"
+                Margin="10"
+                Padding="10,5,10,5"
+                materialDesign:HintAssist.Hint="Info Message Language"
+                ItemsSource="{Binding LanguageList}"
+                SelectedValue="{Binding InfoTextItem.InfoMessage.Language}"
+                Style="{StaticResource MaterialDesignFilledComboBox}" />
+            <TextBox
+                Height="40"
+                MinWidth="140"
+                Margin="10"
+                Padding="10,0,10,5"
+                materialDesign:HintAssist.Hint="Key Show Message Position"
+                Style="{StaticResource MaterialDesignFilledTextBox}"
+                Text="{Binding InfoTextItem.KeyShowMessagePosition}" />
+            <TextBox
+                Height="40"
+                MinWidth="140"
+                Margin="10"
+                Padding="10,0,10,5"
+                materialDesign:HintAssist.Hint="Order Info Message"
+                Style="{StaticResource MaterialDesignFilledTextBox}"
+                Text="{Binding InfoTextItem.OrderInfoMessage}" />
+
+
+
+            <ComboBox
+                Width="200"
+                Height="40"
+                MinWidth="140"
+                Margin="10"
+                Padding="10,5,10,5"
+                materialDesign:HintAssist.Hint="Work Place Name"
+                DisplayMemberPath="WorkplaceTypName"
+                IsSynchronizedWithCurrentItem="True"
+                ItemsSource="{Binding WorkPlaceList}"
+                SelectedValue="{Binding WorkPlace}"
+                Style="{StaticResource MaterialDesignFilledComboBox}" />
+
+
+
+            <TextBox
+                Height="40"
+                MinWidth="140"
+                Margin="10"
+                Padding="10,0,10,5"
+                materialDesign:HintAssist.Hint="Picture File"
+                Style="{StaticResource MaterialDesignFilledTextBox}"
+                Text="{Binding InfoTextItem.PictureFile}" />
+
+
+
+            <DataGrid
+                AutoGenerateColumns="False"
+                BorderThickness="1"
+                CanUserAddRows="False"
+                IsReadOnly="False"
+                ItemsSource="{Binding InfoTextItem.ButtonsConfiguration}">
+                <DataGrid.Columns>
+
+                    <DataGridTextColumn
+                        Width="130"
+                        Binding="{Binding WhichButton}"
+                        Header="Which Button"
+                        IsReadOnly="True" />
+                    <DataGridTextColumn Binding="{Binding ButtonText}" Header="Button Text" />
+                    <DataGridCheckBoxColumn Binding="{Binding Visuable}" Header="Visuable" />
+
+                    <DataGridTextColumn Binding="{Binding MyDialogResult}" Header="My Dialog Result" />
+                    <!--<DataGridTemplateColumn Header="Dialog Result">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <ComboBox
+                                    prism:ViewModelLocator.AutoWireViewModel="True"
+                                    ItemsSource="{Binding Source={StaticResource MessageBoxResultEnum}}"
+                                    SelectedItem="{Binding MyDialogResult, Mode=TwoWay}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>-->
+
+                </DataGrid.Columns>
+
+            </DataGrid>
+            <Button
+                Width="200"
+                Height="45"
+                Margin="50"
+                Background="Green"
+                BorderThickness="0"
+                Command="{Binding AddNewItemCommand}"
+                Content="ADD NEW ITEM"
+                FontSize="15"
+                FontWeight="ExtraBold" />
+
+
+        </WrapPanel>
+
+
+    </Grid>
+</UserControl>

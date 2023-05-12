@@ -1,0 +1,97 @@
+﻿<UserControl
+    x:Class="EditJsonFInspection.Views.Header"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:prism="http://prismlibrary.com/"
+    d:DesignHeight="75"
+    d:DesignWidth="1200"
+    prism:ViewModelLocator.AutoWireViewModel="True"
+    Background="White"
+    FontFamily="{DynamicResource MaterialDesignFont}"
+    mc:Ignorable="d">
+    <Grid VerticalAlignment="Top">
+
+        <Button
+            Margin="15"
+            HorizontalAlignment="Left"
+            Background="Gray"
+            BorderBrush="Gray"
+            Command="{Binding NavigateToMainPage}"
+            Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryLightButton}"
+            ToolTip="MaterialDesignFloatingActionMiniSecondaryLightButton">
+            <materialDesign:PackIcon Kind="Home" />
+
+        </Button>
+
+        <WrapPanel HorizontalAlignment="Right" Orientation="Horizontal">
+
+
+            <TextBox
+                Width="200"
+                Height="45"
+                Margin="10"
+                Padding="10,0,0,5"
+                VerticalAlignment="Top"
+                materialDesign:HintAssist.Hint="Type for filter..."
+                FontSize="16"
+                Style="{StaticResource MaterialDesignFilledTextBox}"
+                Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" />
+
+            <Button
+                Width="120"
+                Height="30"
+                Margin="10"
+                Background="DimGray"
+                BorderThickness="0"
+                Command="{Binding ConvertOldData}"
+                Content="Convert"
+                FontSize="16"
+                FontWeight="ExtraBold" />
+            <Button
+                Width="120"
+                Height="30"
+                Margin="10"
+                Background="DarkSlateGray"
+                BorderThickness="0"
+                Command="{Binding CleanFieldsCommand}"
+                Content="CLEAN"
+                FontSize="16"
+                FontWeight="ExtraBold" />
+            <Button
+                Width="120"
+                Height="30"
+                Margin="10"
+                Background="Green"
+                BorderThickness="0"
+                Command="{Binding AddCommand}"
+                Content="ADD PAGE"
+                FontSize="16"
+                FontWeight="ExtraBold" />
+            <Button
+                Width="120"
+                Height="30"
+                Margin="10"
+                Command="{Binding EditCommand}"
+                Content="EDIT PAGE"
+                FontSize="16"
+                FontWeight="ExtraBold" />
+            <Button
+                Width="120"
+                Height="30"
+                Margin="10"
+                HorizontalAlignment="Right"
+                Background="Red"
+                BorderThickness="0"
+                Command="{Binding DeleteCommand}"
+                Content="DELETE"
+                FontSize="16"
+                FontWeight="ExtraBold" />
+
+        </WrapPanel>
+
+    </Grid>
+
+</UserControl>
